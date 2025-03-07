@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetirementGifts.com | Retirement Gift Ideas & Advices</title>
+	<link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #5c7b9a;
+            --secondary: #f8b042;
+            --light: #dcdcdc;
+            --dark: #333;
+            --success: #6ca67c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+		
+		.hero h2 {
+            font-size: 20px;
+			font-weight: 350;
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+		
+		.hero {
+			background-image: url('C:/Users/julia/Documents/Golden years/images/background.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+			z-index: 1;
+			padding: 80px 0;
+			text-align: center;
+			color: white; /* Consider making text white for better visibility on dark images */
+		}
+		
+		.hero a {
+			text-decoration: none;
+			color: black;
+		}
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e69c29;
+        }
+        
+        .categories {
+            padding: 3rem 0;
+        }
+		
+		#refresh-gifts {
+			background-color: #5c7b9a;
+			border: none;
+			color: white;
+			padding: 12px 24px;
+			text-align: center;
+			text-decoration: none;
+			display: block;
+			font-size: 18px;
+			margin: 20px auto;
+			cursor: pointer;
+			border-radius: 4px;
+			transition: background-color 0.3s;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+			width: fit-content;
+		}
+
+		#refresh-gifts:hover {
+			background-color: #5c7b9a;
+			box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+		}
+
+		#refresh-gifts:active {
+			transform: translateY(1px);
+		}
+		
+		#all-gifts {
+			background-color: #f8b042;
+			border: none;
+			color: black;
+			padding: 12px 24px;
+			text-align: center;
+			text-decoration: none;
+			display: block;
+			font-size: 18px;
+			font-weight: 700;
+			margin: 20px auto;
+			cursor: pointer;
+			border-radius: 4px;
+			transition: background-color 0.3s;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+			width: fit-content;
+		}
+
+		#all-gifts:hover {
+			background-color: #f8b042;
+			box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+		
+		}
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+			padding: 10px;
+			align-items: center;
+            gap: 2rem;		
+        }
+        
+        .category-card {
+			background-color: white;
+			border-radius: 16px;
+			overflow: hidden;
+			box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+			transition: transform 0.3s, box-shadow 0.3s;
+			display: flex;
+			flex-direction: column;
+			height: 350px; /* Set a fixed height for consistent cards */
+		}
+
+		.category-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+		}
+
+		.category-img {
+			height: 50%; /* Takes up exactly half the card */
+			background-color: #ffffff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden; /* In case images are larger */
+		}
+
+		.category-img img {
+			width: 80%;
+			height: 80%;
+			object-fit: contain; /* Changed from 'cover' to 'contain' */
+			padding: 5px; /* Add some padding around the image */
+			box-sizing: border-box;
+		}
+
+		.category-content {
+			font-size: 14px;
+			padding: 15px;
+			height: 50%; /* Takes up the other half */
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			background-color: #e8ebed;
+		}
+        
+        .category-content h3 {
+            margin-bottom: 0.5rem;
+        }
+		
+		.category-description {
+			font-size: 14px;
+			color: #666;
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			margin-bottom: 5px;
+		}
+		
+		.filter-controls {
+			margin-bottom: 30px;
+		}
+    
+		.filter-group {
+			margin-bottom: 15px;
+		}
+    
+		.filter-group h4 {
+			margin-bottom: 8px;
+			font-size: 16px;
+			color: #555;
+		}
+    
+		.filters {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+    
+		.filter-btn {
+			padding: 8px 16px;
+			background-color: #f5f5f5;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+    
+		.filter-btn:hover {
+			background-color: #e0e0e0;
+		}
+    
+		.filter-btn.active {
+			background-color: #3498db;
+			color: white;
+			border-color: #3498db;
+		}
+		
+		.price-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+		
+		.all-gift-btn {
+			display: block;
+			background-color: #f8b042;
+			color: white;
+			text-align: center;
+			padding: 6px 10px;
+			margin-top: 8px;
+			border-radius: 4px;
+			text-decoration: none;
+			font-weight: 500;
+			transition: background-color 0.3s, transform 0.2s;
+		}
+
+		.all-gift-btn:hover {
+			background-color: #5c7b9a;
+			transform: translateY(-2px);
+		}
+
+		.all-gift-btn:active {
+			transform: translateY(0);
+		}
+		
+		.view-gift-btn {
+			display: block;
+			background-color: #f8b042;
+			color: black;
+			font-weight: 500;
+			text-align: center;
+			padding: 6px 10px;
+			margin-top: 8px;
+			border-radius: 4px;
+			text-decoration: none;
+			font-weight: 500;
+			transition: background-color 0.3s, transform 0.2s;
+		}
+
+		.view-gift-btn:hover {
+			background-color: #5c7b9a;
+			transform: translateY(-2px);
+			color: white;
+		}
+
+		.view-gift-btn:active {
+			transform: translateY(0);
+		}
+        
+        .featured {
+            background-color: #eff5fa;
+            padding: 3rem 0;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .gift-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gift-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gift-content {
+            padding: 1.5rem;
+        }
+        
+        .gift-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .gift-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            color: #777;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--success);
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 1rem;
+        }
+		
+		.blog {
+            padding: 3rem 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .blog-img {
+			height: 50%; /* Takes up exactly half the card */
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+		
+		.blog-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover; /* Changed from 'cover' to 'contain' */
+			padding: 0px; /* Add some padding around the image */
+			box-sizing: border-box;
+		}
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .search-container {
+            display: flex;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            padding: 0 1.5rem;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .newsletter {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-btn {
+            padding: 0 1.5rem;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            
+            .category-grid, .featured-grid, .testimonial-grid, .blog-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Retirement<span>Gifts</span>.com
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html" class="active">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/index.html">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>	
+    <section class="hero">
+        <div class="container">
+            <h1>Find the Perfect Retirement Gifts & Ideas</h1>
+            <h2>Celebrating a lifetime of work and the beginning of a new chapter.<br>Discover thoughtful gifts and memorable celebration ideas for retirees.</h2>
+			<a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">
+				<button id="all-gifts">Explore Gift Ideas</button>
+			</a>
+        </div>
+    </section>
+	
+	<button id="refresh-gifts">Quick Search</button>
+	
+	<main id="gifts-container">
+        <!-- Gift cards will be dynamically inserted here -->
+    </main>
+		
+    <script src="script.js"></script>
+
+    <section class="blog">
+        <div class="container">
+            <h2 class="section-title">Retirement Inspiration & Advice</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="images/celebration1.jpg" alt="Planning the Perfect Retirement Party">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 15, 2025</div>
+                        <h3>Planning the Perfect Retirement Party: A Complete Guide</h3>
+                        <p>From venue selection to heartfelt speeches, this guide covers everything you need to plan a memorable retirement celebration.</p>
+                        <a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/articles/retirement-party-guide.html" class="btn" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="images/gifts1.jpg" alt="Retirement Gift Etiquette">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 10, 2025</div>
+                        <h3>Retirement Gift Etiquette: What's Appropriate?</h3>
+                        <p>Navigating the sometimes tricky waters of retirement gift-giving with grace and thoughtfulness.</p>
+                        <a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/articles/retirement-gift-etiquette.html" class="btn" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="images/vacation1.jpg" alt="Top 10 Retirement Destinations">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 12, 2025</div>
+                        <h3>Best Travel Destinations for Retirees</h3>
+                        <p>Explore the best places around the world for retirees looking to relocate or travel in their golden years.</p>
+                        <a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/articles/best-travel-destination.html" class="btn" style="margin-top: 1rem;">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<section class="newsletter">
+        <div class="container">
+            <h2>Get Gift Ideas & Inspiration</h2>
+            <p>Subscribe to our newsletter for the latest retirement gift ideas, and exclusive offers.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address">
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>-->
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Retirement Gifts</h3>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Gift Ideas</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Retirement Gifts. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
