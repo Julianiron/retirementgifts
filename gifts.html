@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Ideas Gallery</title>
+    <style>
+        :root {
+            --primary: #5c7b9a;
+            --secondary: #f8b042;
+            --light: #dcdcdc;
+			--semilight: #f5f5f5;
+            --dark: #333;
+            --success: #6ca67c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+		
+		.container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+		.hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/500') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+		
+		.hero h2 {
+            font-size: 20px;
+			font-weight: 350;
+            margin-bottom: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+		
+		header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+			margin-top: 60px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: var(--light);
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .gifts-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 20px;
+			padding: 20px;
+			max-width: 1200px; /* Limit the maximum width */
+			margin: 0 auto; /* Center the container */
+			cursor: pointer;
+        }
+        
+        .gift-item {
+            background-color: var(--semilight);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gift-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gift-img {
+            width: 100%;
+            height: 180px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gift-img img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .gift-info {
+            padding: 15px;
+        }
+        
+        .gift-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .gift-price {
+            color: #dc3545;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .gift-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            display: none;
+        }
+        
+        .gift-tag {
+            background-color: #e9ecef;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+		
+		.gift-description {
+			text-decoration: none;
+			font-size: 1rem;
+			font-weight: normal;
+			margin-bottom: 12px;			
+		}	
+		
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+		
+		footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+		
+    </style>
+</head>
+<body>
+	<header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Retirement<span>Gifts</span>.com
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html" class="active">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/index.html">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+	
+	<section class="hero">
+        <div class="container">
+            <h1>Gifts Ideas Gallery</h1>
+            <h2>A curated collection of thoughtful retirement gift ideas to celebrate years of service,<br>with easy filtering options to find the perfect present for any retiree.</h2>
+        </div>
+    </section>
+ 
+    <div>   
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="men">For Men</button>
+            <button class="filter-btn" data-filter="women">For Women</button>
+            <button class="filter-btn" data-filter="under50">Under $50</button>
+            <button class="filter-btn" data-filter="over100">Over $100</button>
+        </div>
+        
+        <div class="gifts-container" id="gifts-container">
+            <!-- Gift items will be populated here -->
+        </div>
+	</div>
+	
+	<footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Retirement Gifts</h3>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">Gift Ideas</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/index.html">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Retirement Gifts. All rights reserved.
+            </div>
+        </div>
+    </footer>
+	
+
+    <script>
+        // Gift ideas data
+        const gifts = [
+			{
+				id: 1,
+				name: "'Retired' Tee-Shirt", 
+				description: "Perfect humorous gift for recent retirees. This comfortable cotton tee celebrates the freedom of retirement with a touch of humor.",
+				price: 19.99,
+				image: "images/Tee Shirt.jpg",
+				tags: ["men", "under50"],
+				url: "https://a.co/d/5nSaAAq"				
+			},
+            {
+                id: 2,
+                name: "Lavender candle.jpg",
+                price: 15.97,
+                image: "images/Lavender candle.jpg",
+                tags: ["women", "under50"]
+            },
+            {
+                id: 3,
+                name: "Golden Book",
+                price: 11.99,
+                image: "images/guest-book.jpg",
+                tags: ["men", "women", "under50"]
+            },
+            {
+                id: 4,
+                name: "Blanket",
+                price: 20.99,
+                image: "images/blanket.jpg",
+                tags: ["women", "under50"]
+            },
+            {
+                id: 5,
+                name: "101 Fun Things To Do",
+                price: 13.99,
+                image: "images/Book - 101 fun things to do.jpg",
+                tags: ["women", "men", "under50"]
+            },
+            {
+                id: 6,
+                name: "Retirement Package",
+                price: 33.75,
+                image: "images/Retirement-package.JPG",
+                tags: ["men", "under50"]
+            },
+            {
+                id: 7,
+                name: "'Retired' Sign",
+                price: 24.64,
+                image: "images/sign.jpg",
+                tags: ["women", "men", "under50"]
+            },
+            {
+                id: 8,
+                name: "Luxury Whiskey Set",
+                price: 52.99,
+                image: "images/luxury-whiskey-set.jpg",
+                tags: ["men"]
+            },
+            {
+                id: 9,
+                name: "Purposeful Retirement",
+                price: 20.00,
+                image: "images/purposeful-retirement.jpg",
+                tags: ["men", "women", "under50"]
+            },
+            {
+                id: 10,
+                name: "Retired Mug",
+                price: 14.99,
+                image: "images/retired-great-mug.jpg",
+                tags: ["men", "women", "under50"]
+            },
+            {
+                id: 11,
+                name: "Weather Station",
+                price: 44.89,
+                image: "images/weather-station.jpg",
+                tags: ["women", "men", "under50"],
+				url: "https://www.homedepot.com/p/AcuRite-Color-Weather-Station-02077M/206876311",
+            },
+            {
+                id: 12,
+                name: "Leather Gardening Belt",
+                price: 127.07,
+                image: "images/leather-gardening-belt.jpg",
+                tags: ["men", "over100"],
+				url: "https://www.etsy.com/de-en/listing/1252344635/leather-gardening-beltleather-florist",
+            },
+			{
+                id: 13,
+                name: "Travel Journal",
+                price: 20.00,
+                image: "images/travel-journal.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://a.co/d/dtDITz5",
+            },
+            {
+                id: 14,
+                name: "5 Years Before You Retire",
+				description: "A comprehensive guide to planning your future retirement before it's too late!",
+                price: 17.99,
+                image: "images/5-years-before-you-retire.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://www.amazon.com/Years-Before-You-Retire-Retirement/dp/144056972X",
+            },
+            {
+                id: 15,
+                name: "Custom Bathrobe",
+                price: 65.71,
+                image: "images/custom-bathrobe.jpg",
+                tags: ["women", "men"],
+				url: "https://www.etsy.com/listing/773699696/personalized-robe-custom-birthday-gift",
+            },
+            {
+                id: 16,
+                name: "Coffee Maker",
+				description: "Brew a super-rich coffee concentrate that you can use to create delicious lattes, macchiatos, and other coffeehouse-style drinks.",
+                price: 127.07,
+                image: "images/coffee-maker.jpg",
+                tags: ["men", "women", "over100"],
+				url: "https://a.co/d/gizZHbJ",
+            },
+			{
+                id: 17,
+                name: "Luxury Luggage Set",
+				description: "Includes a 28-inch large suitcase, 24-inch medium checked luggage, 20-inch carry on luggage, an extended duffel bag, and a toiletry bag.",
+                price: 103.15,
+                image: "images/luxury-luggage-set.jpg",
+                tags: ["men", "women", "over100"],
+				url: "https://a.co/d/gGv36o8",
+            },
+            {
+                id: 18,
+                name: "Painting Kit",
+				description: "This artist set is an ideal gift for adults, students, artists, or any art lovers.",
+                price: 106.42,
+                image: "images/painting-kit.jpg",
+                tags: ["men", "women", "over100"],
+				url: "https://www.etsy.com/listing/1820615538/wooden-85-piece-deluxe-wooden-art",
+            },
+            {
+                id: 19,
+                name: "Tea Collection",
+				description: "Our Taylors Tea Specialty Variety Box is perfect for gifting, businesses, home, office, or to simply try and find your favorite tea flavor.",
+                price: 11.49,
+                image: "images/tea-collection.jpg",
+                tags: ["women", "under50"],
+				url: "https://a.co/d/773PFjN",
+            },
+            {
+                id: 20,
+                name: "Pedometer Watch",
+				description: "Doesn't require any App or smartphone connections! Perfect for seniors looking for an easy fitness tracker without the hassle of smartphone setups.",
+                price: 29.99,
+                image: "images/pedometer-watch.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://a.co/d/cnWsGBD",
+            },
+			{
+                id: 21,
+                name: "You're Only Old Once",
+                price: 39.99,
+                image: "images/only-old-once.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://a.co/d/bbuUy1C",
+            },
+			{
+                id: 22,
+                name: "Key Finder",
+                price: 14.99,
+                image: "images/key-finder.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://a.co/d/elQkSNT",
+            },
+            {
+                id: 23,
+                name: "Essential Oil Diffuser",
+                price: 23.99,
+                image: "images/essential-oil-diffuser.jpg",
+                tags: ["women", "under50"],
+				url: "https://a.co/d/5d38d7S",
+            },
+            {
+                id: 24,
+                name: "Kindle",
+                price: 159.99,
+                image: "images/kindle.jpg",
+                tags: ["women", "men", "over100"],
+				url: "https://a.co/d/3ZZdTB3",
+            },
+            {
+                id: 25,
+                name: "Hammock",
+                price: 48.00,
+                image: "images/hammock.jpg",
+                tags: ["men", "under50"],
+				url: "https://www.homedepot.com/p/VEVOR-Double-Quilted-Fabric-Hammock-12-FT-Double-Hammock-with-Curved-Spreader-Bars-2-Person-Quilted-Hammock-HFDCMBSCSBDZJY16NV0/330407721#overlay",
+            },
+			{
+                id: 26,
+                name: "Keys to a Successful Retirement",
+                price: 9.34,
+                image: "images/keys-successful.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://www.amazon.com/Keys-Successful-Retirement-Staying-Productive/dp/164611339X",
+            },
+            {
+                id: 27,
+                name: "High Contrast Keyboard",
+                price: 19.99,
+                image: "images/keyboard.jpg",
+                tags: ["men", "women", "under50"],
+				url: "https://a.co/d/4d0Qhx2",
+            },
+            {
+                id: 28,
+                name: "The Ultimate Senior Travel Guide",
+                price: 14.99,
+                image: "images/travel-guide.jpg",
+                tags: ["women", "men", "under50"],
+				url: "https://a.co/d/26ZKdgY",
+            },
+        ];
+		
+        // Function to create gift item element
+        function createGiftItem(gift) {
+            return `
+                <div class="gift-item">
+                    <div class="gift-img">
+                        <img src="${gift.image}" alt="${gift.name}">
+                    </div>
+                    <div class="gift-info">
+                        <div class="gift-name">${gift.name}</div>
+						<div class="gift-description">${gift.description}</div>
+                        <div class="gift-price">$${gift.price.toFixed(2)}</div>
+                        <div class="gift-tags">
+                            ${gift.tags.map(tag => `<span class="gift-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+			
+		
+        function filterGifts(filter) {
+    const giftsContainer = document.getElementById('gifts-container');
+    giftsContainer.innerHTML = '';
+    
+    let filteredGifts = [];
+    
+    switch(filter) {
+        case 'men':
+            filteredGifts = gifts.filter(gift => gift.tags.includes('men'));
+            break;
+        case 'women':
+            filteredGifts = gifts.filter(gift => gift.tags.includes('women'));
+            break;
+        case 'under50':
+            filteredGifts = gifts.filter(gift => gift.price < 50);
+            break;
+        case 'over100':
+            filteredGifts = gifts.filter(gift => gift.price > 100);
+            break;
+        default:
+            filteredGifts = gifts;
+    }
+    
+    if (filteredGifts.length === 0) {
+        giftsContainer.innerHTML = '<div class="no-results">No gifts found matching this filter.</div>';
+        return;
+    }
+    
+    filteredGifts.forEach(gift => {
+        const giftElement = document.createElement('div');
+        giftElement.classList.add('gift-item');
+        
+		
+		
+        // Add link wrapper to make entire card clickable (without description)
+        const giftLink = document.createElement('a');
+        giftLink.href = gift.url || '#';
+        giftLink.target = '_blank';
+        giftLink.innerHTML = `
+            <div class="gift-img">
+                <img src="${gift.image}" alt="${gift.name}">
+            </div>
+            <div class="gift-info">
+                <div class="gift-name">${gift.name}</div>
+                <div class="gift-price">$${gift.price.toFixed(2)}</div>
+                <div class="gift-tags">
+                    ${gift.tags.map(tag => `<span class="gift-tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        
+		giftElement.appendChild(giftLink);
+        giftsContainer.appendChild(giftElement);
+		
+		// Create description element separately
+        const descriptionElement = document.createElement('div');
+        descriptionElement.classList.add('gift-description');
+        descriptionElement.textContent = gift.description || '';
+		
+		// Append description after the link
+        if (gift.description) {
+            const descriptionContainer = document.createElement('div');
+            descriptionContainer.classList.add('description-container');
+            descriptionContainer.appendChild(descriptionElement);
+            descriptionContainer.style.padding = '0 15px 15px'; // Match padding with gift-info
+            giftElement.appendChild(descriptionContainer);
+        }
+		
+    });
+}
+		
+        // Add event listeners to filter buttons
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Apply filter
+                filterGifts(this.getAttribute('data-filter'));
+            });
+        });
+
+        // Initial load - show all gifts
+        filterGifts('all');	
+		
+    </script>
+</body>
+</html>

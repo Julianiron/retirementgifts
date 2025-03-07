@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+        :root {
+            --primary: #5c7b9a;
+            --secondary: #f8b042;
+            --light: #dcdcdc;
+            --dark: #333;
+            --success: #6ca67c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+  
+        .categories {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+		.about-section {
+			background-color: var(--light);
+			border-radius: 10px;
+			padding-right: 200px;
+			padding-left: 200px;
+			padding-top: 20px;
+			padding-bottom: 20px
+			margin-top: 20px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		.about-section h2 {
+			color: var(--primary);
+			margin-bottom: 20px;
+		}
+
+		.about-section p {
+			margin-bottom: 15px;
+			line-height: 1.4;
+			text-align: justify;
+		}
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Blog | Your Website</title>
+    <meta name="description" content="Explore our collection of retirement planning articles and guides.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Retirement<span>Gifts</span>.com
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html" class="active">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/index.html">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="about-section">
+    <br><br><h2><br>About Us</h2>
+    <br><p>Welcome to Golden Years Gifts, your trusted resource for finding thoughtful and meaningful retirement gifts. <br>
+	We understand that retirement represents a significant milestone in one's life journey—a celebration of years of hard work, dedication, and accomplishment.<br><br>
+	
+    Our mission is to help you discover the perfect gift that honors this special transition. Whether you're shopping for a colleague who's been with your company for decades, a beloved family member entering their golden years, or a friend embarking on this new chapter, our curated selection offers something for every retiree.<br><br>
+	
+    What sets us apart is our carefully organized collection. Each gift in our gallery has been selected for its quality, thoughtfulness, and ability to convey your appreciation. We regularly update our collection to include fresh, innovative gift ideas alongside timeless classics.<br><br>
+	
+    Thank you for visiting Golden Years Gifts. We're honored to be part of your gift-giving journey and to help you celebrate the retirees in your life with presents that truly matter.</p><br><br><br><br><br>
+</div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Golden Years Gifts</h3>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Gift Ideas</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Golden Years Gifts. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>
