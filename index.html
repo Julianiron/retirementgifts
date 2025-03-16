@@ -104,7 +104,7 @@
 			background-repeat: no-repeat;
 			background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
 			z-index: 1;
-			padding: 80px 0;
+			padding: 20px 0;
 			text-align: center;
 			color: white; /* Consider making text white for better visibility on dark images */
 		}
@@ -466,16 +466,22 @@
         }
         
         .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+			display: flex;
+			justify-content: center;
+			gap: 10rem;
+			margin-bottom: 2rem;
+			padding: 0 2rem;
         }
+		
+		.footer-col {
+			flex: 0 0 250px; /* Fixed width for each column */
+			max-width: 250px; /* Ensures columns don't grow beyond this width */
+		}
         
         .footer-col h3 {
             margin-bottom: 1rem;
             position: relative;
-        }
+		}	
         
         .footer-col h3:after {
             content: '';
@@ -609,8 +615,8 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html" class="active">Home</a></li>
-                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">Gift Ideas Gallery</a></li>
-					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/index.html">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/blog.html">Blog</a></li>
                     <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
                 </ul>
             </nav>
@@ -620,20 +626,18 @@
         <div class="container">
             <h1>Find the Perfect Retirement Gifts & Ideas</h1>
             <h2>Celebrating a lifetime of work and the beginning of a new chapter.<br>Discover thoughtful gifts and memorable celebration ideas for retirees.</h2>
-			<a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/index.html">
+			<a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">
 				<button id="all-gifts">Explore Gift Ideas</button>
 			</a>
         </div>
     </section>
 	
-	<button id="refresh-gifts">Quick Search</button>
+	<!--<button id="refresh-gifts">Quick Search</button>
 	
 	<main id="gifts-container">
-        <!-- Gift cards will be dynamically inserted here -->
-    </main>
+         Gift cards will be dynamically inserted here
+    </main> -->
 		
-    <script src="script.js"></script>
-
     <section class="blog">
         <div class="container">
             <h2 class="section-title">Retirement Inspiration & Advice</h2>
@@ -666,7 +670,7 @@
                     </div>
                     <div class="blog-content">
                         <div class="blog-date">March 12, 2025</div>
-                        <h3>Best Travel Destinations for Retirees</h3>
+                        <h3>The 8 Best Travel Destinations for Retirees</h3>
                         <p>Explore the best places around the world for retirees looking to relocate or travel in their golden years.</p>
                         <a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/articles/best-travel-destination.html" class="btn" style="margin-top: 1rem;">Read More</a>
                     </div>
@@ -691,23 +695,15 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>Retirement Gifts</h3>
-                    <p>Helping you celebrate life's golden milestone with thoughtful gifts.</p>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts, celebration ideas and life advices.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Gift Ideas</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/blog.html">Blog</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About Us</a></li>
                     </ul>
                 </div>
             </div>

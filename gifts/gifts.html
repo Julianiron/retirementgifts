@@ -8,10 +8,13 @@
         :root {
             --primary: #5c7b9a;
             --secondary: #f8b042;
+            --accent: #e67e22;
             --light: #dcdcdc;
-			--semilight: #f5f5f5;
+            --semilight: #f5f5f5;
             --dark: #333;
             --success: #6ca67c;
+            --gradient-start: #5c7b9a;
+            --gradient-end: #3d5266;
         }
         
         * {
@@ -38,7 +41,7 @@
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/500') center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 4rem 0;
+            padding: 2rem 0;
         }
         
         .hero h1 {
@@ -134,27 +137,148 @@
             background-color: var(--primary);
             color: var(--light);
         }
-        
+		
+		/* New improved gift card styles */
+		
         .gifts-container {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-			gap: 20px;
-			padding: 20px;
-			max-width: 1200px; /* Limit the maximum width */
-			margin: 0 auto; /* Center the container */
-			cursor: pointer;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .gift-item {
-            background-color: var(--semilight);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border-top: 2px solid var(--primary);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
         }
         
         .gift-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gift-item::before {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            opacity: 0.2;
+            transition: all 0.3s ease;
+        }
+        
+        .gift-item:hover::before {
+            opacity: 1;
+            transform: rotate(15deg);
+        }
+        
+        .gift-info {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gift-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .gift-name::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        
+        .gift-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .gift-tag-container {
+            display: flex;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .gift-tag {
+            background-color: rgba(92, 123, 154, 0.1);
+            color: var(--primary);
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+			display: none;
+        }
+        
+        .gift-action {
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .gift-btn {
+            padding: 8px 15px;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .gift-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
         }
         
         .gift-img {
@@ -162,53 +286,16 @@
             height: 180px;
             background-color: #ffffff;
             display: flex;
+			overflow: hidden;
             align-items: center;
             justify-content: center;
         }
-        
-        .gift-img img {
-            max-width: 80%;
-            max-height: 80%;
-        }
-        
-        .gift-info {
-            padding: 15px;
-        }
-        
-        .gift-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        
-        .gift-price {
-            color: #dc3545;
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        
-        .gift-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            display: none;
-        }
-        
-        .gift-tag {
-            background-color: #e9ecef;
-            font-size: 0.8rem;
-            padding: 3px 8px;
-            border-radius: 12px;
-        }
 		
-		.gift-description {
-			text-decoration: none;
-			font-size: 1rem;
-			font-weight: normal;
-			margin-bottom: 12px;			
-		}	
-		
+		.gift-img img {
+            width: 100%;
+            min-height: 100%;
+        }
+
         .no-results {
             text-align: center;
             grid-column: 1 / -1;
@@ -224,11 +311,17 @@
         }
         
         .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+           display: flex;
+			justify-content: center;
+			gap: 10rem;
+			margin-bottom: 2rem;
+			padding: 0 2rem;
         }
+		
+		.footer-col {
+			flex: 0 0 250px; /* Fixed width for each column */
+			max-width: 250px; /* Ensures columns don't grow beyond this width */
+		}
         
         .footer-col h3 {
             margin-bottom: 1rem;
@@ -318,7 +411,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>Retirement Gifts</h3>
-                    <p>Helping you celebrate life's golden milestone with thoughtful gifts.</p>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts, celebration ideas and life advices.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
@@ -326,15 +419,7 @@
                         <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
                         <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas</a></li>
                         <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/blog.html">Blog</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -349,254 +434,271 @@
         // Gift ideas data
         const gifts = [
 			{
-				id: 1,
-				name: "'Retired' Tee-Shirt", 
-				description: "Perfect humorous gift for recent retirees. This comfortable cotton tee celebrates the freedom of retirement with a touch of humor.",
-				price: 19.99,
-				image: "images/Tee Shirt.jpg",
-				tags: ["men", "under50"],
-				url: "https://a.co/d/5nSaAAq"				
-			},
-            {
-                id: 2,
-                name: "Lavender candle.jpg",
-				description: "Made to brighten up the retirement celebration with a personal and humorous touch, this candle is ideal as a retirement gift.",
-                price: 15.97,
-                image: "images/Lavender candle.jpg",
-                tags: ["women", "under50"],
-				url: "https://a.co/d/fkKl9uZ",
-            },
-            {
-                id: 3,
-                name: "Golden Book",
-				description: "You can use our retirement guest book to sign for collecting some advice and wishes of your colleague, friends and family.",
-                price: 11.99,
-                image: "images/guest-book.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://a.co/d/6HdWTuY",
-            },
-            {
-                id: 4,
-                name: "Blanket",
-				description: "retirement rules, no clocks, wake up smiling, take naps, go for a walk, visit family and friends, read a book...",
-                price: 20.99,
-                image: "images/blanket.jpg",
-                tags: ["women", "under50"],
-				url: "https://a.co/d/gbsP90O",
-            },
-            {
-                id: 5,
-                name: "101 Fun Things To Do",
-				description: "No more morning commute, no more idiotic bosses, no more stressful deadlines! You are now officially off the clock and the world is your oyster!",
-                price: 13.99,
-                image: "images/Book - 101 fun things to do.jpg",
-                tags: ["women", "men", "under50"],
-				url: "https://a.co/d/eSYFEhi",
-            },
-            {
-                id: 6,
-                name: "Luxury Whiskey Set",
-				description: "Lighten Life bourbon decanter set is a must have for home bar.",
-                price: 52.99,
-                image: "images/luxury-whiskey-set.jpg",
-                tags: ["men"],
-				url: "https://a.co/d/je7eorA",
-            },
-            {
-                id: 7,
-                name: "Purposeful Retirement",
-				description: "Get ready to simplify life and move from the world of work to a life of retirement and good living ─ to enter a happy retirement.",
-                price: 20.00,
-                image: "images/purposeful-retirement.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://amzn.eu/d/38GggJ2",
-            },
-            {
-                id: 8,
-                name: "Retired Mug",
-				description: "Perfect gift to celebrate the hard work and dedication of retirees throughout their careers.",
-                price: 19.99,
-                image: "images/retired-great-mug.jpg",
-                tags: ["women", "under50"],
-				url: "https://amzn.eu/d/90Ppxw8",
-            },
-            {
-                id: 9,
-                name: "Weather Station",
-				description: "The AcuRite Color Weather Station with temperature, humidity and forecast offers a host of premium features at an attractive price.",
-                price: 44.89,
-                image: "images/weather-station.jpg",
-                tags: ["women", "men", "under50"],
-				url: "https://www.homedepot.com/p/AcuRite-Color-Weather-Station-02077M/206876311",
-            },
-            {
-                id: 10,
-                name: "Leather Gardening Belt",
-				description: "For your gardening lifestyle, a belt bag leather is an ideal choice.",
-                price: 127.07,
-                image: "images/leather-gardening-belt.jpg",
-                tags: ["men", "over100"],
-				url: "https://www.etsy.com/de-en/listing/1252344635/leather-gardening-beltleather-florist",
-            },
-			{
-                id: 11,
-                name: "Travel Journal",
-				description: "Personalize your memories of up to 15 trips in this travel journal notebook with a lay-flat spine for easy journaling.",
-                price: 20.00,
-                image: "images/travel-journal.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://a.co/d/dtDITz5",
-            },
-            {
-                id: 12,
-                name: "The 5 Years Before You Retire",
-				description: "A comprehensive guide to planning your future retirement before it's too late!",
-                price: 17.99,
-                image: "images/5-years-before-you-retire.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://www.amazon.com/Years-Before-You-Retire-Retirement/dp/144056972X",
-            },
-            {
-                id: 13,
-                name: "Custom Bathrobe",
-				description: "Available in five great colors, it features two side pockets and a matching belt.",
-                price: 65.71,
-                image: "images/custom-bathrobe.jpg",
-                tags: ["women", "men"],
-				url: "https://www.etsy.com/listing/773699696/personalized-robe-custom-birthday-gift",
-            },
-            {
-                id: 14,
-                name: "Coffee Maker",
-				description: "Brew a super-rich coffee concentrate that you can use to create delicious lattes, macchiatos, and other coffeehouse-style drinks.",
-                price: 127.07,
-                image: "images/coffee-maker.jpg",
-                tags: ["men", "women", "over100"],
-				url: "https://a.co/d/gizZHbJ",
-            },
-			{
-                id: 15,
-                name: "Luxury Luggage Set",
-				description: "Includes a 28-inch large suitcase, 24-inch medium checked luggage, 20-inch carry on luggage, an extended duffel bag, and a toiletry bag.",
-                price: 103.15,
-                image: "images/luxury-luggage-set.jpg",
-                tags: ["men", "women", "over100"],
-				url: "https://a.co/d/gGv36o8",
-            },
-            {
-                id: 16,
-                name: "Painting Kit",
-				description: "This artist set is an ideal gift for adults, students, artists, or any art lovers.",
-                price: 106.42,
-                image: "images/painting-kit.jpg",
-                tags: ["men", "women", "over100"],
-				url: "https://www.etsy.com/listing/1820615538/wooden-85-piece-deluxe-wooden-art",
-            },
-            {
-                id: 17,
-                name: "Tea Collection",
-				description: "Our Taylors Tea Specialty Variety Box is perfect for gifting, businesses, home, office, or to simply try and find your favorite tea flavor.",
-                price: 11.49,
-                image: "images/tea-collection.jpg",
-                tags: ["women", "under50"],
-				url: "https://a.co/d/773PFjN",
-            },
-            {
-                id: 18,
-                name: "Pedometer Watch",
-				description: "Doesn't require any App or smartphone connections! Perfect for seniors looking for an easy fitness tracker without the hassle of smartphone setups.",
-                price: 29.99,
-                image: "images/pedometer-watch.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://a.co/d/cnWsGBD",
-            },
-			{
-                id: 19,
-                name: "You're Only Old Once",
-				description: "With his unmistakable rhymes and signature illustration style, Dr. Seuss creates a classic picture-book ode to aging.",
-                price: 39.99,
-                image: "images/only-old-once.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://a.co/d/bbuUy1C",
-            },
-			{
-                id: 20,
-                name: "Key Finder",
-				description: "No app needed! Featuring extra-large buttons and 85dB beeping, this key tracker beeper set is effortlessly operable for seniors.",
-                price: 14.99,
-                image: "images/key-finder.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://a.co/d/elQkSNT",
-            },
-            {
-                id: 21,
-                name: "Essential Oil Diffuser",
-				description: "Show your love by giving this Aroma Diffuser. The exquisite design blends naturally with most home decor.",
-                price: 23.99,
-                image: "images/essential-oil-diffuser.jpg",
-                tags: ["women", "under50"],
-				url: "https://a.co/d/5d38d7S",
-            },
-            {
-                id: 22,
-                name: "Kindle",
-				description: "Next-generation 7” Paperwhite display, faster page turns, weeks of battery life, and an adjustable warm light — you won’t want to put it down.",
-                price: 159.99,
-                image: "images/kindle.jpg",
-                tags: ["women", "men", "over100"],
-				url: "https://a.co/d/3ZZdTB3",
-            },
-            {
-                id: 23,
-                name: "Hammock",
-				description: "The bamboo hammock spreader bars with folded and curved designs, provide more convenience and safety than normal hammocks.",
-                price: 48.00,
-                image: "images/hammock.jpg",
-                tags: ["men", "under50"],
-				url: "https://www.homedepot.com/p/VEVOR-Double-Quilted-Fabric-Hammock-12-FT-Double-Hammock-with-Curved-Spreader-Bars-2-Person-Quilted-Hammock-HFDCMBSCSBDZJY16NV0/330407721#overlay",
-            },
-			{
-                id: 24,
-                name: "Keys to a Successful Retirement",
-				description: "You're finally retired! Learn how to make these the best years of your life.",
-                price: 9.34,
-                image: "images/keys-successful.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://www.amazon.com/Keys-Successful-Retirement-Staying-Productive/dp/164611339X",
-            },
-            {
-                id: 25,
-                name: "High Contrast Keyboard",
-				description: "Perfect for elderly, the visually impaired, schools, special needs departments and libraries, as well as companies.",
-                price: 19.99,
-                image: "images/keyboard.jpg",
-                tags: ["men", "women", "under50"],
-				url: "https://a.co/d/4d0Qhx2",
-            },
-            {
-                id: 26,
-                name: "The Ultimate Senior Travel Guide",
-				description: "Perfect for retirees looking to embark on new adventures, this guide provides practical advice and inspiration tailored specifically for senior travelers.",
-                price: 14.99,
-                image: "images/travel-guide.jpg",
-                tags: ["women", "men", "under50"],
-				url: "https://a.co/d/26ZKdgY",
-            },
+    id: 1,
+    name: "'Retired' Tee-Shirt", 
+    description: "Celebrate retirement freedom with this comfortable cotton tee that blends humor and style. Perfect gift for the newly liberated professional.",
+    price: 19.99,
+    image: "images/Tee Shirt2.jpg",
+    tags: ["men", "under50"],
+    url: "https://a.co/d/5nSaAAq"				
+},
+{
+    id: 2,
+    name: "Lavender candle",
+    description: "Soothing lavender scent helps transition into relaxed retirement days. This aromatic candle celebrates new beginnings with calming elegance.",
+    price: 15.97,
+    image: "images/Lavender candle2.jpg",
+    tags: ["women", "under50"],
+    url: "https://a.co/d/fkKl9uZ",
+},
+{
+    id: 3,
+    name: "Golden Book",
+    description: "Capture heartfelt retirement wishes and advice from colleagues, friends, and family in this elegant memory-preserving keepsake guest book.",
+    price: 11.99,
+    image: "images/guest-book2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://a.co/d/6HdWTuY",
+},
+{
+    id: 4,
+    name: "Blanket",
+    description: "Wrap yourself in comfort with this cozy retirement rules blanket. Perfect for naps, reading, and embracing your schedule-free lifestyle.",
+    price: 20.99,
+    image: "images/blanket2.jpg",
+    tags: ["women", "under50"],
+    url: "https://a.co/d/gbsP90O",
+},
+{
+    id: 5,
+    name: "Book: '101 Fun Things To Do In Retirement.'",
+    description: "Discover exciting possibilities for your newfound freedom. This inspirational guide offers creative activities to make retirement truly fulfilling.",
+    price: 13.99,
+    image: "images/Book - 101 fun things to do2.jpg",
+    tags: ["women", "men", "under50"],
+    url: "https://a.co/d/eSYFEhi",
+},
+{
+    id: 6,
+    name: "Luxury Whiskey Set",
+    description: "Elevate home entertaining with this sophisticated bourbon decanter set. Perfect for celebrating retirement milestones with refined taste and style.",
+    price: 52.99,
+    image: "images/luxury-whiskey-set2.jpg",
+    tags: ["men"],
+    url: "https://a.co/d/je7eorA",
+},
+{
+    id: 7,
+    name: "Book: 'Purposeful Retirement'",
+    description: "Transform retirement from empty hours to purposeful living. This guide helps create meaningful connections while simplifying life after work.",
+    price: 20.00,
+    image: "images/purposeful-retirement2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://amzn.eu/d/38GggJ2",
+},
+{
+    id: 8,
+    name: "'Retired' Mug",
+    description: "Savor morning coffee with this retirement celebration mug. A daily reminder of well-deserved freedom after years of dedicated work.",
+    price: 19.99,
+    image: "images/retired-great-mug2.jpg",
+    tags: ["women", "under50"],
+    url: "https://amzn.eu/d/90Ppxw8",
+},
+{
+    id: 9,
+    name: "Weather Station",
+    description: "Monitor temperature, humidity, and forecasts with this premium weather station. Perfect for planning retirement activities while staying informed.",
+    price: 44.89,
+    image: "images/weather-station2.jpg",
+    tags: ["men", "under50"],
+    url: "https://www.homedepot.com/p/AcuRite-Color-Weather-Station-02077M/206876311",
+},
+{
+    id: 10,
+    name: "Leather Gardening Belt",
+    description: "Enhance gardening experiences with this premium leather tool belt. Combines functionality and craftsmanship for the serious retirement gardener.",
+    price: 127.07,
+    image: "images/leather-gardening-belt2.jpg",
+    tags: ["men", "over100"],
+    url: "https://www.etsy.com/de-en/listing/1252344635/leather-gardening-beltleather-florist",
+},
+{
+    id: 11,
+    name: "Travel Journal",
+    description: "Document fifteen retirement adventures in this beautifully crafted travel journal. Preserve memories with easy writing and thoughtful prompts.",
+    price: 20.00,
+    image: "images/travel-journal2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://a.co/d/dtDITz5",
+},
+{
+    id: 12,
+    name: "Book: 'The 5 Years Before You Retire.'",
+    description: "Prepare strategically for retirement with this comprehensive financial planning guide. Essential reading before transitioning to your post-work life.",
+    price: 17.99,
+    image: "images/5-years-before-you-retire2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://www.amazon.com/Years-Before-You-Retire-Retirement/dp/144056972X",
+},
+{
+    id: 13,
+    name: "Custom Bathrobe",
+    description: "Indulge in personalized comfort with this luxurious bathrobe. Available in five colors with side pockets and matching belt.",
+    price: 65.71,
+    image: "images/custom-bathrobe2.jpg",
+    tags: ["women", "men"],
+    url: "https://www.etsy.com/listing/773699696/personalized-robe-custom-birthday-gift",
+},
+{
+    id: 14,
+    name: "Coffee Maker",
+    description: "Create coffeehouse-quality beverages at home with this premium coffee maker. Perfect for leisurely retirement mornings and entertaining guests.",
+    price: 127.07,
+    image: "images/coffee-maker2.jpg",
+    tags: ["men", "women", "over100"],
+    url: "https://a.co/d/gizZHbJ",
+},
+{
+    id: 15,
+    name: "Luxury Luggage Set",
+    description: "Embark on retirement adventures with this comprehensive five-piece luggage set including suitcases, duffel bag, and convenient toiletry bag.",
+    price: 103.15,
+    image: "images/luxury-luggage-set2.jpg",
+    tags: ["men", "women", "over100"],
+    url: "https://a.co/d/gGv36o8",
+},
+{
+    id: 16,
+    name: "Painting Kit",
+    description: "Explore artistic potential with this comprehensive 85-piece wooden art set. Perfect for developing creative skills during retirement leisure time.",
+    price: 106.42,
+    image: "images/painting-kit2.jpg",
+    tags: ["men", "women", "over100"],
+    url: "https://www.etsy.com/listing/1820615538/wooden-85-piece-deluxe-wooden-art",
+},
+{
+    id: 17,
+    name: "Tea Collection",
+    description: "Sample premium tea varieties with this specialty collection. Perfect for establishing new retirement rituals and discovering favorite flavors.",
+    price: 11.49,
+    image: "images/tea-collection2.jpg",
+    tags: ["women", "under50"],
+    url: "https://m.media-amazon.com/images/I/61cwVI6a+wL._SL1080_.jpg",
+},
+{
+    id: 18,
+    name: "Pedometer Watch",
+    description: "Track fitness goals with this smartphone-independent pedometer watch. Easy-to-use technology specifically designed for active seniors' healthy lifestyle.",
+    price: 29.99,
+    image: "images/pedometer-watch2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://a.co/d/cnWsGBD",
+},
+{
+    id: 19,
+    name: "Book: 'You're Only Old Once.'",
+    description: "Laugh through aging's adventures with Dr. Seuss's witty rhymes and iconic illustrations celebrating life's later chapters with humor and wisdom.",
+    price: 39.99,
+    image: "images/only-old-once2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://a.co/d/bbuUy1C",
+},
+{
+    id: 20,
+    name: "Key Finder",
+    description: "Never lose essentials again with this user-friendly key finder featuring large buttons and loud beeping. No smartphone required.",
+    price: 14.99,
+    image: "images/key-finder2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://a.co/d/elQkSNT",
+},
+{
+    id: 21,
+    name: "Essential Oil Diffuser",
+    description: "Create tranquil retirement environments with this elegant aromatherapy diffuser. Enhances home décor while providing soothing scented relaxation therapy.",
+    price: 23.99,
+    image: "images/essential-oil-diffuser2.jpg",
+    tags: ["women", "under50"],
+    url: "https://a.co/d/5d38d7S",
+},
+{
+    id: 22,
+    name: "Kindle Reader",
+    description: "Enjoy unlimited reading with this 7-inch Paperwhite display featuring adjustable lighting, fast navigation, and weeks-long battery life.",
+    price: 159.99,
+    image: "images/kindle2.jpg",
+    tags: ["women", "men", "over100"],
+    url: "https://a.co/d/3ZZdTB3",
+},
+{
+    id: 23,
+    name: "Hammock",
+    description: "Relax in retirement comfort with this double quilted hammock. Features innovative bamboo spreader bars ensuring both safety and lounging luxury.",
+    price: 48.00,
+    image: "images/hammock2.jpg",
+    tags: ["men", "under50"],
+    url: "https://www.homedepot.com/p/VEVOR-Double-Quilted-Fabric-Hammock-12-FT-Double-Hammock-with-Curved-Spreader-Bars-2-Person-Quilted-Hammock-HFDCMBSCSBDZJY16NV0/330407721#overlay",
+},
+{
+    id: 24,
+    name: "Book: 'Keys to a Successful Retirement'",
+    description: "Transform retirement into life's best chapter with practical advice for staying active, finding purpose, and embracing new opportunities daily.",
+    price: 9.34,
+    image: "images/keys-successful2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://www.amazon.com/Keys-Successful-Retirement-Staying-Productive/dp/164611339X",
+},
+{
+    id: 25,
+    name: "High Contrast Keyboard",
+    description: "Type with confidence using this visually accessible keyboard. Perfect for seniors maintaining computer skills with clear, high-contrast keys.",
+    price: 19.99,
+    image: "images/keyboard2.jpg",
+    tags: ["men", "women", "under50"],
+    url: "https://a.co/d/4d0Qhx2",
+},
+{
+    id: 26,
+    name: "Book: 'The Ultimate Senior Travel Guide'",
+    description: "Discover senior-friendly destinations, accommodations, and travel tips tailored specifically for retirees ready to explore the world confidently.",
+    price: 14.99,
+    image: "images/travel-guide2.jpg",
+    tags: ["women", "men", "under50"],
+    url: "https://a.co/d/26ZKdgY",
+},
+{
+    id: 27,
+    name: "Digital Frame",
+    description: "Display cherished memories in this versatile digital frame. Showcase photos and videos through SD card for evolving retirement reminiscence.",
+	image: "images/digital frame2.jpg",
+    price: 49.99,
+    tags: ["women"],
+    url: "https://c1.neweggimages.com/productimage/nb300/BMC3D2308300CROXCC4.jpg",
+},
+			
         ];
 		
-        // Function to create gift item element
+       // Function to create gift item element - updated function
         function createGiftItem(gift) {
+            // Create tags HTML if tags exist
+            const tagsHTML = gift.tags ? `
+                <div class="gift-tag-container">
+                    ${gift.tags.map(tag => `<span class="gift-tag">${tag}</span>`).join('')}
+                </div>
+            ` : '';
+            
             return `
-                <div class="gift-item">
-                    <div class="gift-img">
+                <div class="gift-item" onclick="window.open('${gift.url || '#'}', '_blank')">
+					<div class="gift-img">
                         <img src="${gift.image}" alt="${gift.name}">
                     </div>
                     <div class="gift-info">
                         <div class="gift-name">${gift.name}</div>
-						<div class="gift-description">${gift.description}</div>
-                        <div class="gift-price">$${gift.price.toFixed(2)}</div>
-                        <div class="gift-tags">
-                            ${gift.tags.map(tag => `<span class="gift-tag">${tag}</span>`).join('')}
+                        <div class="gift-description">${gift.description || 'No description available'}</div>
+                        ${tagsHTML}
+                        <div class="gift-action">
+                            <a href="${gift.url || '#'}" class="gift-btn" target="_blank">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -643,12 +745,11 @@
         giftLink.href = gift.url || '#';
         giftLink.target = '_blank';
         giftLink.innerHTML = `
-            <div class="gift-img">
+			<div class="gift-img">
                 <img src="${gift.image}" alt="${gift.name}">
             </div>
             <div class="gift-info">
                 <div class="gift-name">${gift.name}</div>
-                <div class="gift-price">$${gift.price.toFixed(2)}</div>
                 <div class="gift-tags">
                     ${gift.tags.map(tag => `<span class="gift-tag">${tag}</span>`).join('')}
                 </div>
