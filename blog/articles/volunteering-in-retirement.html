@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+        :root {
+            --primary: #5c7b9a;
+            --secondary: #f8b042;
+            --light: #dcdcdc;
+            --dark: #333;
+            --success: #6ca67c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/500') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .categories {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+		.blog {
+            padding: 2rem 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+		
+		.post-content {
+			font-size: 16px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			text-align: justify;
+		}
+		
+		.featured-image-container {
+			margin-bottom: 20px;
+			text-align: center;
+		}
+  
+		.featured-image {
+			max-width: 80%;
+			height: auto;
+			border-radius: 5px;
+		}
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+		.footer-grid {
+			display: flex;
+			justify-content: center;
+			gap: 10rem;
+			margin-bottom: 2rem;
+			padding: 0 2rem;
+        }
+		
+		.footer-col {
+			flex: 0 0 250px; /* Fixed width for each column */
+			max-width: 250px; /* Ensures columns don't grow beyond this width */
+		}
+        
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* New styles for blog layout with sidebar */
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            margin-top: 20px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-widget h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar-widget h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .search-button:hover {
+            background-color: #4a6a89;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.3rem 0;
+            transition: color 0.3s;
+        }
+        
+        .category-list a:hover {
+            color: var(--primary);
+        }
+        
+        .category-count {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .recent-posts {
+            list-style: none;
+        }
+        
+        .recent-post-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-post-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-post-img {
+            width: 70px;
+            height: 70px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+        
+        .recent-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-info {
+            flex-grow: 1;
+        }
+        
+        .recent-post-title {
+            margin-bottom: 0.3rem;
+        }
+        
+        .recent-post-title a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .recent-post-title a:hover {
+            color: var(--primary);
+        }
+        
+        .recent-post-date {
+            color: #777;
+            font-size: 0.8rem;
+        }
+        
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Gift Etiquette: What's Appropriate?</title>
+    <meta name="description" content="Learn how to plan an unforgettable retirement party with our comprehensive guide covering venues, themes, gifts, and more.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Retirement<span>Gifts</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/blog.html" class="active">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <article class="blog-post">
+            <div class="container">
+                <div class="blog-container">
+                    <div class="main-content">
+                        <div class="post-header">
+							<h2>Volunteering in Retirement:<br>Giving Back and Finding Purpose.</h2><br>
+                    <div class="post-meta">
+					
+					<div class="featured-img-container">
+                        <img src="C:/Users/julia/Documents/Golden years/images/volunteer1.jpg" alt="Retirement Vacation" class= "featured-image">
+                    </div>
+                        <span class="post-date">February 28, 2025</span>
+                        <span class="post-author">By Admin</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+					<p>Retirement offers a unique opportunity to give back to the community while finding renewed purpose. Volunteering is not only fulfilling but also beneficial for mental and physical health. There are many ways retirees can get involved and make a meaningful impact.</p>
+					
+					<h3>Mentoring and Tutoring</h3>
+					<p>One great way to contribute is by mentoring and tutoring. Retirees can help young students with their studies, providing guidance and support to improve their learning. They can also share their career advice with aspiring professionals, offering valuable insights gained from years of experience. Many choose to engage with local schools or participate in online programs to reach a broader audience.</p>
+					
+					<h3>Community Service and Food Banks</h3>
+					<p>Helping at food banks and community service programs is another rewarding option. Many retirees assist in food distribution programs, ensuring that those in need have access to proper meals. Some support homeless shelters and soup kitchens, dedicating time to provide comfort and nourishment. Others take part in local community improvement initiatives, making their neighborhoods better places to live.</p>
+					
+					<h3>Environmental Volunteering</h3>
+					<p>For those who love nature, environmental volunteering can be incredibly fulfilling. Retirees can participate in park and beach clean-ups, helping to maintain the beauty of natural spaces. Some assist with tree planting and conservation projects, contributing to a greener planet. Others volunteer at national parks and wildlife sanctuaries, working to protect endangered species and preserve biodiversity.</p>
+					
+					<h3>Hospital and Healthcare Support</h3>
+					<p>Hospitals and healthcare facilities often welcome volunteers. Retirees can offer companionship to patients, brightening their days with conversation and support. Many choose to volunteer at hospice centers and nursing homes, providing comfort to those in their final stages of life. Others help with local blood drives and medical charities, playing a vital role in community health efforts.</p>
+					
+					<h3>Nonprofit Organizations</h3>
+					<p>Many nonprofit organizations rely on volunteers to function effectively. Retirees can assist with fundraising and event planning, helping to organize initiatives that raise crucial funds. Some support administrative work and outreach efforts, ensuring smooth operations within the organization. Others contribute to advocacy and awareness programs, spreading important messages and influencing positive change.</p>
+					
+					<h3>International Volunteering</h3>
+					<p>For those interested in traveling, international volunteering offers exciting opportunities. Retirees can teach English or provide skill training abroad, helping communities develop valuable capabilities. Some join medical or humanitarian missions, bringing aid to underserved regions. Others engage in community-building projects worldwide, supporting infrastructure development and social programs.</p>
+					
+					<h3>Animal Welfare</h3>
+					<p>Animal lovers can find great purpose in volunteering for animal welfare organizations. Many retirees help at animal shelters, providing care and companionship to abandoned pets. Some participate in rescue and rehabilitation efforts, assisting animals in distress. Others support wildlife conservation initiatives, working to protect endangered species and their habitats.</p>
+					
+					<h3>Final Thoughts: Finding the Right Opportunity</h3>
+					<p>Choosing the right volunteer activity depends on individual interests, skills, and availability. Whether contributing locally or internationally, every effort makes a difference. Volunteering is a wonderful way to stay active, meet new people, and add meaningful purpose to retirement years. Exploring available opportunities and getting involved can lead to a fulfilling and rewarding experience.</p>		
+					
+					
+                </div>
+							
+                        
+                        <div class="post-footer">
+                            <div class="tags">
+                                <span class="tag">Retirement</span>
+                                <span class="tag">Volunteering</span>
+                            </div>
+                            
+                            <div class="share-buttons">
+                                <h3>Share This Article:</h3>
+                                <a href="#" class="share-button">Facebook</a>
+                                <a href="#" class="share-button">Email</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- New Sidebar -->
+                    <div class="sidebar">
+                        <!-- Recent Posts Widget -->
+                        <div class="sidebar-widget">
+                            <h3>Recent Articles</h3>
+                            <ul class="recent-posts">
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/celebration1.jpg" alt="retirement celebration">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/retirement-party-guide.html">Planning the Perfect Retirement Party</a></h4>
+                                        <span class="recent-post-date">March 5, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/gifts2.jpg" alt="tech gifts">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/12-gifts-for-men.html">12 Retirement Gifts for Men</a></h4>
+                                        <span class="recent-post-date">March 1, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/volunteer1.jpg" alt="retirement speech">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/volunteering-in-retirement.html">Volunteering in Retirement</a></h4>
+                                        <span class="recent-post-date">February 22, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/vacation1.jpg" alt="travel after retirement">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/best-travel-destination.html">Best 8 Travel Destinations for Retirees</a></h4>
+                                        <span class="recent-post-date">February 15, 2025</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+				<br>  
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Retirement Gifts</h3>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts, celebration ideas and life advices.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                         <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/blog.html" class="active">Blog</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                    </ul>
+                </div> 
+            </div>
+            <div class="copyright">
+                © 2025 Retirement Gifts. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="../../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+</body>
+</html>

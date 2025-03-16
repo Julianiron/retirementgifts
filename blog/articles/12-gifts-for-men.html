@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+        :root {
+            --primary: #5c7b9a;
+            --secondary: #f8b042;
+            --light: #dcdcdc;
+            --dark: #333;
+            --success: #6ca67c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/500') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .categories {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+		.blog {
+            padding: 2rem 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+		
+		.post-content {
+			font-size: 16px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			text-align: justify;
+		}
+		
+		.featured-image-container {
+			margin-bottom: 20px;
+			text-align: center;
+		}
+  
+		.featured-image {
+			max-width: 80%;
+			height: auto;
+			border-radius: 5px;
+		}
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-grid {
+            display: flex;
+			justify-content: center;
+			gap: 10rem;
+			margin-bottom: 2rem;
+			padding: 0 2rem;
+        }
+		
+		.footer-col {
+			flex: 0 0 250px; /* Fixed width for each column */
+			max-width: 250px; /* Ensures columns don't grow beyond this width */
+		}
+        
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* New styles for blog layout with sidebar */
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            margin-top: 20px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-widget h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar-widget h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .search-button:hover {
+            background-color: #4a6a89;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.3rem 0;
+            transition: color 0.3s;
+        }
+        
+        .category-list a:hover {
+            color: var(--primary);
+        }
+        
+        .category-count {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .recent-posts {
+            list-style: none;
+        }
+        
+        .recent-post-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-post-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-post-img {
+            width: 70px;
+            height: 70px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+        
+        .recent-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-info {
+            flex-grow: 1;
+        }
+        
+        .recent-post-title {
+            margin-bottom: 0.3rem;
+        }
+        
+        .recent-post-title a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .recent-post-title a:hover {
+            color: var(--primary);
+        }
+        
+        .recent-post-date {
+            color: #777;
+            font-size: 0.8rem;
+        }
+        
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Gift Etiquette: What's Appropriate?</title>
+    <meta name="description" content="Learn how to plan an unforgettable retirement party with our comprehensive guide covering venues, themes, gifts, and more.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Retirement<span>Gifts</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/blog.html" class="active">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <article class="blog-post">
+            <div class="container">
+                <div class="blog-container">
+                    <div class="main-content">
+                        <div class="post-header">
+							<h2>12 Great Retirement Gifts for Men</h2><br>
+                    <div class="post-meta">
+					
+					<div class="featured-img-container">
+                        <img src="C:/Users/julia/Documents/Golden years/images/gifts2.jpg" alt="Retirement Vacation" class= "featured-image">
+                    </div>
+                        <span class="post-date">February 28, 2025</span>
+                        <span class="post-author">By Admin</span>
+                    </div>
+                </div>
+                
+        <p>After decades of hard work, retirement marks an exciting new chapter in a man's life. Finding the perfect gift to celebrate this milestone can be challenging, but the right present can help him enjoy his newfound freedom and pursue passions he may not have had time for before. Here are 12 thoughtful retirement gifts that combine practicality with pleasure.</p><br>
+    
+        <h2>1. Luxury Whiskey Set</h2>
+        <p>A high-quality whiskey set makes for an elegant gift that encourages relaxation and celebration. Look for a set that includes crystal glasses, whiskey stones, and perhaps a decanter. Consider pairing it with a bottle of premium scotch or bourbon for a complete package that allows him to savor special moments.</p><br>
+    
+        <h2>2. Home Weather Station</h2>
+        <p>For the man who's always checking the forecast or discussing the weather, a personal weather station is both entertaining and practical. Modern weather stations can track temperature, humidity, barometric pressure, and more. Some even connect to smartphones, providing data he can monitor from anywhere—perfect for planning golf outings or gardening days.</p><br>
+    
+        <h2>3. Leather Gardening Belt</h2>
+        <p>Retirement often means more time in the garden. A durable leather gardening belt provides convenient storage for tools while adding a touch of style to yard work. Look for options with multiple pockets, loops for larger tools, and comfortable adjustable straps that make gardening more efficient and enjoyable.</p><br>
+    
+        <h2>4. Travel Journal</h2>
+        <p>With more time to explore the world, a quality travel journal encourages him to document adventures and memories. Choose a leather-bound option with quality paper that will last for years. Some journals include helpful sections for itineraries, maps, and photo mementos, creating a lasting record of retirement travels.</p><br>
+    
+        <h2>5. Premium Coffee Maker</h2>
+        <p>Mornings no longer need to be rushed, making a premium coffee maker the perfect gift for savoring that first cup of the day. Consider an espresso machine, French press, or pour-over system that elevates his coffee routine. Many retirees appreciate the ritual and craft involved in making the perfect brew.</p><br>
+
+        <h2>6. Hammock</h2>
+        <p>Nothing says relaxation quite like a hammock. Whether hung between trees in the backyard or on a sturdy stand on the patio, a hammock provides the perfect spot for afternoon naps, reading, or simply enjoying nature. Look for weather-resistant materials and comfortable designs that can support his weight securely.</p><br>
+
+        <h2>7. Key Finder</h2>
+        <p>Help prevent those "where did I put my keys?" moments with a smart key finder. These small devices attach to keys, wallets, or other frequently misplaced items and connect to a smartphone app that can make them ring when missing. Some models even show the item's last known location on a map.</p><br>
+    
+        <h2>8. Painting Kit</h2>
+        <p>Retirement is the perfect time to explore artistic talents. A comprehensive painting kit with quality brushes, paints, canvases, and an instructional book can inspire creative expression. Whether he's a complete novice or returning to an old hobby, painting offers relaxation and a sense of accomplishment.</p><br>
+    
+        <h2>9. Pedometer Watch</h2>
+        <p>Staying active is crucial for a healthy retirement. A pedometer watch or fitness tracker encourages daily movement by tracking steps, heart rate, and even sleep patterns. Many models offer motivational features like goal-setting and achievement badges that make fitness more engaging.</p><br>
+   
+        <h2>10. "Retired" T-Shirt</h2>
+        <p>A humorous "Retired" t-shirt celebrates this new life stage with style. Look for shirts with clever sayings like "Professionally Retired," "No Alarm Clock, No Boss, No Problems," or "Retirement: The Long Weekend." It's a lighthearted gift that acknowledges his well-deserved freedom from the daily grind.</p><br>
+    
+        <h2>11. Workshop Tool Upgrade</h2>
+        <p>For the handyman, retirement means more time for projects. Consider upgrading his workshop with a premium tool he's always wanted but couldn't justify purchasing. Whether it's a professional-grade power drill, a laser-guided saw, or a complete socket set, quality tools will provide years of project enjoyment.</p><br>
+
+        <h2>12. Subscription Box</h2>
+        <p>Give the gift that keeps giving with a subscription box tailored to his interests. Whether it's monthly deliveries of craft beers, unique BBQ sauces, fishing lures, or book selections, a subscription box provides regular surprises that extend the retirement celebration throughout the year.</p><br>
+    
+        <p>Retirement represents a significant life change deserving of thoughtful recognition. The best gifts combine practicality with pleasure, enhancing this new chapter of life and supporting new adventures and long-held passions. With these suggestions, you'll find something meaningful to celebrate this important milestone.</p>	<br>
+											                   
+                        <div class="post-footer">
+                            <div class="tags">
+                                <span class="tag">Retirement</span>
+                                <span class="tag">Volunteering</span>
+                            </div>
+                            
+                            <div class="share-buttons">
+                                <h3>Share This Article:</h3>
+                                <a href="#" class="share-button">Facebook</a>
+                                <a href="#" class="share-button">Email</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- New Sidebar -->
+                    <div class="sidebar">
+                        <!-- Recent Posts Widget -->
+                        <div class="sidebar-widget">
+                            <h3>Recent Articles</h3>
+                            <ul class="recent-posts">
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/celebration1.jpg" alt="retirement celebration">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/retirement-party-guide.html">Planning the Perfect Retirement Party</a></h4>
+                                        <span class="recent-post-date">March 5, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/gifts2.jpg" alt="tech gifts">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/12-gifts-for-men.html">12 Retirement Gifts for Men</a></h4>
+                                        <span class="recent-post-date">March 1, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/volunteer1.jpg" alt="retirement speech">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/volunteering-in-retirement.html">Volunteering in Retirement</a></h4>
+                                        <span class="recent-post-date">February 22, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/vacation1.jpg" alt="travel after retirement">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/best-travel-destination.html">Best 8 Travel Destinations for Retirees</a></h4>
+                                        <span class="recent-post-date">February 15, 2025</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+				<br>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Retirement Gifts</h3>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts, celebration ideas and life advices.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/blog.html" class="active">Blog</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Golden Years Gifts. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="../../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+</body>
+</html>

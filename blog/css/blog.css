@@ -1,0 +1,282 @@
+/* Blog Main Page Styles */
+.blog-header {
+    background-color: #f5f5f5;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.blog-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.blog-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.blog-listing {
+    padding: 60px 0;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.blog-card-content {
+    padding: 20px;
+}
+
+.blog-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.blog-card-meta {
+    display: flex;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.blog-card-date {
+    margin-right: 15px;
+}
+
+.blog-card-excerpt {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    display: inline-block;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Individual Blog Post Styles */
+.blog-post {
+    padding: 60px 0;
+}
+
+.post-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.post-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.post-meta {
+    color: #666;
+    font-size: 1rem;
+}
+
+.post-date, .post-author {
+    margin-right: 20px;
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #333;
+}
+
+.post-content h2 {
+    font-size: 1.8rem;
+    margin: 40px 0 20px;
+    color: #222;
+}
+
+.post-content p {
+    margin-bottom: 20px;
+}
+
+.post-content ul {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.post-content li {
+    margin-bottom: 10px;
+}
+
+.post-footer {
+    max-width: 800px;
+    margin: 50px auto;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.tags {
+    margin-bottom: 30px;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 10px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.share-buttons h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.share-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #0066cc;
+    color: white;
+    border-radius: 4px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.share-button:hover {
+    background-color: #0052a3;
+}
+
+.related-posts {
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.related-posts h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.comments-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comments-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.comment-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: #0052a3;
+}
+
+#comments-list {
+    margin-top: 30px;
+}
+
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    font-weight: 600;
+}
+
+.comment-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .blog-header {
+        padding: 40px 0;
+    }
+    
+    .blog-header h1 {
+        font-size: 2rem;
+    }
+    
+    .post-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}

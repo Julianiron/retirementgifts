@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+        :root {
+            --primary: #5c7b9a;
+            --secondary: #f8b042;
+            --light: #dcdcdc;
+            --dark: #333;
+            --success: #6ca67c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/500') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .categories {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+		.blog {
+            padding: 2rem 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+		
+		.post-content {
+			font-size: 16px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			text-align: justify;
+		}
+		
+		.featured-image-container {
+			margin-bottom: 20px;
+			text-align: center;
+		}
+  
+		.featured-image {
+			max-width: 80%;
+			height: auto;
+			border-radius: 5px;
+		}
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+		.footer-grid {
+			display: flex;
+			justify-content: center;
+			gap: 10rem;
+			margin-bottom: 2rem;
+			padding: 0 2rem;
+        }
+		
+		.footer-col {
+			flex: 0 0 250px; /* Fixed width for each column */
+			max-width: 250px; /* Ensures columns don't grow beyond this width */
+		}
+        
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* New styles for blog layout with sidebar */
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            margin-top: 20px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-widget h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar-widget h3:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .search-form {
+            display: flex;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .search-button:hover {
+            background-color: #4a6a89;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.3rem 0;
+            transition: color 0.3s;
+        }
+        
+        .category-list a:hover {
+            color: var(--primary);
+        }
+        
+        .category-count {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .recent-posts {
+            list-style: none;
+        }
+        
+        .recent-post-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-post-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-post-img {
+            width: 70px;
+            height: 70px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+        
+        .recent-post-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .recent-post-info {
+            flex-grow: 1;
+        }
+        
+        .recent-post-title {
+            margin-bottom: 0.3rem;
+        }
+        
+        .recent-post-title a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .recent-post-title a:hover {
+            color: var(--primary);
+        }
+        
+        .recent-post-date {
+            color: #777;
+            font-size: 0.8rem;
+        }
+        
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Gift Etiquette: What's Appropriate?</title>
+    <meta name="description" content="Learn how to plan an unforgettable retirement party with our comprehensive guide covering venues, themes, gifts, and more.">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    Retirement<span>Gifts</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+					<li><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/blog.html" class="active">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <article class="blog-post">
+            <div class="container">
+                <div class="blog-container">
+                    <div class="main-content">
+                        <div class="post-header">
+							<h2>Fulfilling Hobbies to Explore in Retirement</h2>
+                    <div class="post-meta"><br>
+					
+					<div class="featured-img-container">
+                        <img src="C:/Users/julia/Documents/Golden years/images/hobbies1.jpg" alt="Retirement Hobbies" class= "featured-image">
+                    </div>
+                        <span class="post-date">March 2, 2025</span>
+                        <span class="post-author">By Admin</span>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    
+				<p>Retirement marks a significant transition in life—a time when the daily demands of work give way to newfound freedom. This liberation from professional responsibilities presents an excellent opportunity to explore interests that may have been sidelined during busy working years. Finding fulfilling hobbies is not just about passing time; it's about enriching life, maintaining cognitive health, fostering social connections, and discovering new passions. Here's a comprehensive look at rewarding hobbies worth exploring during retirement.</p>
+    
+				<h3>Creative Pursuits</h3>
+    
+				<h4>Fine Arts</h4>
+				<p>The fine arts offer endless opportunities for creative expression and skill development. Painting, drawing, and sculpture allow retirees to translate their life experiences into tangible works while learning techniques that can be refined over years.</p>
+				<p>Many community centers and art schools offer classes specifically designed for older adults, creating supportive environments where beginners can thrive. The process of creating art has been linked to reduced stress and anxiety, making it as therapeutic as it is fulfilling.</p>
+    
+				<h4>Writing</h4>
+				<p>Retirement is the perfect time to finally write that novel, memoir, or poetry collection. Writing allows retirees to share their wisdom, explore their imagination, or document family histories for future generations.</p>
+				<p>Joining a writing group provides motivation, feedback, and social connection. Many retirees find that regular writing—whether through journaling, blogging, or creative fiction—helps maintain cognitive sharpness and emotional well-being.</p>
+    
+				<h4>Music and Performance</h4>
+				<p>Learning an instrument or joining a choir offers cognitive benefits while bringing the joy of music into daily life. Community theaters and senior performance groups welcome newcomers, providing opportunities to explore acting, singing, or dancing.</p>
+				<p>The collaborative nature of music and performance arts creates natural social bonds, helping combat isolation that sometimes accompanies retirement.</p>
+    
+				<h3>Outdoor and Physical Activities</h3>
+    
+				<h4>Gardening</h4>
+				<p>Gardening combines physical activity with the satisfaction of nurturing living things. Whether tending ornamental flowers, growing vegetables, or creating a wildlife haven, the connection with nature brings numerous health benefits.</p>
+				<p>Community garden plots offer options for apartment dwellers, while master gardener programs provide structured learning for those wanting to develop expertise. The cyclical nature of gardening provides ongoing projects throughout the seasons.</p>
+    
+				<h4>Hiking and Nature Observation</h4>
+				<p>Exploring trails at a comfortable pace allows retirees to enjoy the physical benefits of walking while connecting with the natural world. Bird watching, wildlife photography, or plant identification add purpose and educational components to outdoor excursions.</p>
+				<p>Many hiking clubs cater specifically to seniors, organizing outings appropriate for various fitness levels and creating communities of like-minded nature enthusiasts.</p>
+    
+				<h4>Golf and Low-Impact Sports</h4>
+				<p>Sports like golf, tennis, pickleball, and lawn bowling combine physical activity with social interaction and skill development. These activities can be adjusted to accommodate physical limitations while still providing challenge and enjoyment.</p>
+				<p>Senior leagues and tournaments create friendly competitive environments where retirees can meet others with similar interests.</p>
+    
+				<h3>Learning and Intellectual Pursuits</h3>
+    
+				<h4>Language Learning</h4>
+				<p>Studying a new language keeps the mind active and opens doors to different cultures. Many retirees combine language learning with travel, creating immediate opportunities to practice their skills in authentic settings.</p>
+				<p>Online platforms, community college courses, and language exchange programs offer flexible options for learning at any level.</p>
+    
+				<h4>Genealogy Research</h4>
+				<p>Tracing family history combines detective work with technology skills and historical research. This hobby often creates connections between generations as retirees document family stories and discover ancestry.</p>
+				<p>Local history societies, libraries, and online databases provide resources, while genealogy clubs offer opportunities to share discoveries and techniques.</p>
+    
+				<h4>Lifelong Learning</h4>
+				<p>Auditing university courses, attending lecture series, or participating in programs specifically designed for older adults satisfies intellectual curiosity without the pressure of formal degree requirements.</p>
+				<p>Organizations like Osher Lifelong Learning Institutes (OLLI) and Elder Hostels create structured opportunities for continued education in supportive environments.</p>
+    
+				<h3>Volunteer and Community Engagement</h3>
+    
+				<h4>Mentoring and Teaching</h4>
+				<p>Sharing professional knowledge and life experience through mentoring creates meaningful connections while keeping retirees engaged with their fields of expertise. Teaching roles—whether formal or informal—allow retirees to make significant contributions while staying intellectually active.</p>
+				<p>Schools, community organizations, and professional associations often have programs specifically seeking retired experts.</p>
+    
+				<h4>Community Service</h4>
+				<p>Volunteering addresses community needs while providing retirees with purpose and social connection. Options range from hands-on service like building homes or serving meals to administrative support for nonprofit organizations.</p>
+				<p>The flexibility of retirement allows for deeper commitment to causes, potentially leading to leadership roles within organizations.</p>
+    
+				<h4>Advocacy Work</h4>
+				<p>Retirement offers time to advocate for important causes, whether environmental conservation, social justice, or community improvement. This work connects retirees with passionate people of all ages while creating meaningful impact.</p>
+				<p>Advisory boards, community action committees, and nonprofit organizations welcome the perspective and commitment retirees can offer.</p>
+    
+				<h3>Culinary and Homemaking Arts</h3>
+    
+				<h4>Cooking and Baking</h4>
+				<p>Exploring new cuisines, mastering techniques, or perfecting family recipes combines creativity with the fundamental pleasure of good food. Cooking classes, food tours, and culinary clubs provide structure and social connection.</p>
+				<p>Many retirees find joy in documenting family recipes or creating their own cookbook as a legacy project.</p>
+    
+				<h4>Brewing and Fermentation</h4>
+				<p>Crafting beer, wine, kombucha, or fermented foods combines science with creativity and results in products to share. These projects unfold over time, creating ongoing engagement and opportunities to perfect techniques.</p>
+				<p>Local clubs and online communities support learning through shared experience and troubleshooting.</p>
+    
+				<h4>Textile Arts</h4>
+				<p>Knitting, quilting, weaving, and other textile arts combine creativity with productivity, resulting in useful or beautiful items. These portable hobbies can be enjoyed alone or in social settings like fiber arts guilds.</p>
+				<p>The repetitive nature of many textile arts creates a meditative quality that many practitioners find calming and centering.</p>
+    
+				<h3>Finding Your Path</h3>
+    
+				<p>The most fulfilling retirement hobbies are those that align with personal values, interests, and physical capabilities. Consider these questions when exploring potential hobbies:</p>
+				
+				<ul>
+					<li>What activities have you always been curious about but never had time to try?</li>
+					<li>Which interests from earlier in life might you revisit with your mature perspective?</li>
+					<li>What kinds of communities would you enjoy joining?</li>
+					<li>How can your professional expertise translate into meaningful hobby pursuits?</li>
+					<li>What balance of physical, creative, and intellectual activities would serve you best?</li>
+				</ul>
+				
+				<p>Remember that experimentation is part of the process. Many retirees find that sampling various activities leads to unexpected passions. Community centers, senior programs, and adult education catalogs are excellent starting points for exploring options with minimal investment.</p>
+					
+					
+                </div>
+							
+                        
+                        <div class="post-footer">
+                            <div class="tags">
+                                <span class="tag">Retirement</span>
+                                <span class="tag">Party Planning</span>
+                                <span class="tag">Celebration</span>
+                            </div>
+                            
+                            <div class="share-buttons">
+                                <h3>Share This Article:</h3>
+                                <a href="#" class="share-button">Facebook</a>
+                                <a href="#" class="share-button">Email</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- New Sidebar -->
+                    <div class="sidebar">
+                        <!-- Recent Posts Widget -->
+                        <div class="sidebar-widget">
+                            <h3>Recent Articles</h3>
+                            <ul class="recent-posts">
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/celebration1.jpg" alt="retirement celebration">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/retirement-party-guide.html">Planning the Perfect Retirement Party</a></h4>
+                                        <span class="recent-post-date">March 5, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/gifts2.jpg" alt="tech gifts">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/12-gifts-for-men.html">12 Retirement Gifts for Men</a></h4>
+                                        <span class="recent-post-date">March 1, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/volunteer1.jpg" alt="retirement speech">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/volunteering-in-retirement.html">Volunteering in Retirement</a></h4>
+                                        <span class="recent-post-date">February 22, 2025</span>
+                                    </div>
+                                </li>
+                                <li class="recent-post-item">
+                                    <div class="recent-post-img">
+                                        <img src="file:///C:/Users/julia/Documents/Golden%20years/images/vacation1.jpg" alt="travel after retirement">
+                                    </div>
+                                    <div class="recent-post-info">
+                                        <h4 class="recent-post-title"><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/articles/best-travel-destination.html">Best 8 Travel Destinations for Retirees</a></h4>
+                                        <span class="recent-post-date">February 15, 2025</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+				<br>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Retirement Gifts</h3>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts, celebration ideas and life advices.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/blog/blog.html" class="active">Blog</a></li>
+						<li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Retirement Gifts. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script src="../../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+</body>
+</html>
