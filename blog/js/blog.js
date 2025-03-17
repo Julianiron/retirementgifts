@@ -25,7 +25,7 @@ const blogPosts = [
         excerpt: 'Learn how to plan an unforgettable retirement party with our comprehensive guide covering venues, themes, gifts, and more.',
         date: 'February 7, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/gifts1.jpg',
+        image: '/images/gifts1.jpg',
         tags: ['Retirement', 'Gifts', 'Celebration']
     },
     {
@@ -35,7 +35,7 @@ const blogPosts = [
         excerpt: 'Learn how to plan an unforgettable retirement celebration with our comprehensive guide covering venues, themes, gifts, and more.',
         date: 'February 14, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/celebration1.jpg',
+        image: '/images/celebration1.jpg',
         tags: ['Retirement', 'Party Planning', 'Celebration']
     },
     {
@@ -45,7 +45,7 @@ const blogPosts = [
         excerpt: 'Explore enriching activities and hobbies that can make your retirement years more meaningful, social, and enjoyable.',
         date: 'February 21, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/hobbies1.jpg',
+        image: 'C/images/hobbies1.jpg',
         tags: ['Retirement', 'Hobbies', 'Lifestyle']
     },
 	{
@@ -55,7 +55,7 @@ const blogPosts = [
         excerpt: 'Discover the critical financial planning steps you need to take before retiring to ensure financial security and peace of mind.',
         date: 'February 28, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/vacation1.jpg',
+        image: '/images/vacation1.jpg',
         tags: ['Retirement', 'Financial Planning', 'Investing']
 	},
     {
@@ -65,7 +65,7 @@ const blogPosts = [
         excerpt: 'Planning for retirement is one of the most important financial endeavors. A secure retirement requires careful planning, disciplined saving, and strategic investment decisions.',
         date: 'February 10, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/finance1.jpg',
+        image: '/images/finance1.jpg',
         tags: ['Retirement', 'Gifts', 'Celebration']
     },
 	{
@@ -75,7 +75,7 @@ const blogPosts = [
         excerpt: 'Retirement offers a unique opportunity to give back to the community while finding renewed purpose.',
         date: 'February 10, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/volunteer1.jpg',
+        image: '/images/volunteer1.jpg',
         tags: ['Retirement', 'Healthcare', 'Insurance']
     },
 	{
@@ -85,7 +85,7 @@ const blogPosts = [
         excerpt: 'Finding the perfect gift can help him enjoy his newfound freedom and pursue passions he may not have had time for before.',
         date: 'March 10, 2025',
         author: 'Admin',
-        image: 'C:/Users/julia/Documents/Golden years/images/gifts2.jpg',
+        image: '/images/gifts2.jpg',
         tags: ['Retirement', 'Gifts', 'Men']
     },
 ];
