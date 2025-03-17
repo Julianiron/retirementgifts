@@ -45,7 +45,7 @@ const blogPosts = [
         excerpt: 'Explore enriching activities and hobbies that can make your retirement years more meaningful, social, and enjoyable.',
         date: 'February 21, 2025',
         author: 'Admin',
-        image: 'C/images/hobbies1.jpg',
+        image: '/images/hobbies1.jpg',
         tags: ['Retirement', 'Hobbies', 'Lifestyle']
     },
 	{
