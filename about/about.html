@@ -102,10 +102,7 @@
 		.about-section {
 			background-color: var(--light);
 			border-radius: 10px;
-			padding-right: 200px;
-			padding-left: 200px;
-			padding-top: 20px;
-			padding-bottom: 20px
+			padding: 20px;
 			margin-top: 20px;
 			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		}
@@ -120,6 +117,19 @@
 			line-height: 1.4;
 			text-align: justify;
 		}
+		
+		/* Add responsive padding for larger screens */
+			@media (min-width: 768px) {
+		.about-section {
+			padding: 20px 10%;
+		}
+	}
+
+		@media (min-width: 1200px) {
+		.about-section {
+			padding: 20px 200px;
+		}
+	}
         
         footer {
             background-color: var(--dark);
@@ -243,14 +253,14 @@
 
     <div class="about-section">
     <br><br><h2><br>About Us</h2>
-    <br><p>Welcome to Golden Years Gifts, your trusted resource for finding thoughtful and meaningful retirement gifts. <br>
+    <br><p>Welcome to Retirement-Gifts.com, your trusted resource for finding thoughtful and meaningful retirement gifts. <br>
 	We understand that retirement represents a significant milestone in one's life journey—a celebration of years of hard work, dedication, and accomplishment.<br><br>
 	
     Our mission is to help you discover the perfect gift that honors this special transition. Whether you're shopping for a colleague who's been with your company for decades, a beloved family member entering their golden years, or a friend embarking on this new chapter, our curated selection offers something for every retiree.<br><br>
 	
     What sets us apart is our carefully organized collection. Each gift in our gallery has been selected for its quality, thoughtfulness, and ability to convey your appreciation. We regularly update our collection to include fresh, innovative gift ideas alongside timeless classics.<br><br>
 	
-    Thank you for visiting Golden Years Gifts. We're honored to be part of your gift-giving journey and to help you celebrate the retirees in your life with presents that truly matter.</p><br><br><br><br><br>
+    Thank you for visiting Retirement-Gifts.com. We're honored to be part of your gift-giving journey and to help you celebrate the retirees in your life with presents that truly matter.</p><br><br><br><br><br>
 </div>
 
     <footer>
