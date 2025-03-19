@@ -81,41 +81,66 @@
             color: var(--secondary);
         }
 		
-		/* Hamburger menu icon (hidden by default on desktop) */
-		.menu-toggle {
-			display: none;
-			flex-direction: column;
-			justify-content: space-between;
-			width: 30px;
-			height: 21px;
-			cursor: pointer;
-		}
-
-		.menu-toggle span {
-			height: 3px;
-			width: 100%;
-			background-color: white;
-			border-radius: 2px;
-		}
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
+		/* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 200;
         }
         
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+		
+		/* Mobile Nav Styles */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+			
+		.nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+                z-index: 100;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            }	
+        
+        .nav-links.active {
+                right: 0 !important;
+				display: flex;
+            }
+            
         .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-			font-size: 24px; /* Increase font size from default */
-            transition: color 0.3s;
-        }
-        
-        /* Hamburger Animation */
+                margin: 1.5rem 0;
+            }
+			
+		.nav-links a {
+				color: white;
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 24px; /* Increase font size from default */
+				transition: color 0.3s;
+			}
+            
+            /* Hamburger Animation */
         .hamburger.active span:nth-child(1) {
                 transform: translateY(9px) rotate(45deg);
             }
@@ -145,6 +170,7 @@
                 display: block;
             }
         }
+ 
 		
         .hero h1 {
             font-size: 2.5rem;
@@ -734,14 +760,7 @@
 				<button id="all-gifts">Explore Gift Ideas</button>
 			</a>
         </div>
-    </section>
-	
-	<!--<button id="refresh-gifts">Quick Search</button>
-	
-	<main id="gifts-container">
-         Gift cards will be dynamically inserted here
-    </main> -->
-		
+    </section>	
     <section class="blog">
         <div class="container">
             <h2 class="section-title">Retirement Inspiration & Advice</h2>
@@ -807,7 +826,7 @@
                         <li><a href="index.html" class="active">Home</a></li>
 						<li><a href="gifts/gifts.html">Gift Ideas Gallery</a></li>
 						<li><a href="blog/blog.html">Blog</a></li>
-						<li><a href="bout/about.html">About</a></li>
+						<li><a href="about/about.html">About</a></li>
                     </ul>
                 </div>
             </div>
