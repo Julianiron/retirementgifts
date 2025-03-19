@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Blog</title>
+    <meta name="description" content="Explore our collection of retirement planning articles and guides.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <style>
         :root {
             --primary: #5c7b9a;
             --secondary: #f8b042;
@@ -76,6 +83,99 @@
         .nav-links a:hover {
             color: var(--secondary);
         }
+        
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 200;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Mobile Nav Styles */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 80px;
+                transition: right 0.3s ease;
+                z-index: 100;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+			
+			.nav-links a {
+				color: white;
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 24px; /* Increase font size from default */
+				transition: color 0.3s;
+			}
+            
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            /* Prevent body scrolling when menu is open */
+            body.menu-open {
+                overflow: hidden;
+            }
+            
+            /* Overlay for clicking outside to close */
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 90;
+            }
+            
+            .overlay.active {
+                display: block;
+            }
+        }
   
         .categories {
             padding: 3rem 0;
@@ -99,37 +199,37 @@
             transform: translateX(-50%);
         }
         
-		.about-section {
-			background-color: var(--light);
-			border-radius: 10px;
-			padding: 20px;
-			margin-top: 20px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		}
+        .about-section {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-		.about-section h2 {
-			color: var(--primary);
-			margin-bottom: 20px;
-		}
+        .about-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
 
-		.about-section p {
-			margin-bottom: 15px;
-			line-height: 1.4;
-			text-align: justify;
-		}
-		
-		/* Add responsive padding for larger screens */
-			@media (min-width: 768px) {
-		.about-section {
-			padding: 20px 10%;
-		}
-	}
+        .about-section p {
+            margin-bottom: 15px;
+            line-height: 1.4;
+            text-align: justify;
+        }
+        
+        /* Add responsive padding for larger screens */
+        @media (min-width: 768px) {
+            .about-section {
+                padding: 20px 10%;
+            }
+        }
 
-		@media (min-width: 1200px) {
-		.about-section {
-			padding: 20px 200px;
-		}
-	}
+        @media (min-width: 1200px) {
+            .about-section {
+                padding: 20px 200px;
+            }
+        }
         
         footer {
             background-color: var(--dark);
@@ -138,24 +238,24 @@
         }
         
         .footer-grid {
-			display: flex;
-			justify-content: center;
-			gap: 10rem;
-			margin-bottom: 2rem;
-			padding: 0 2rem;
-			flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+            display: flex;
+            justify-content: center;
+            gap: 10rem;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
         }
-		
-		.footer-col {
-			flex: 1 1 250px; /* Allow columns to grow and shrink with min width */
-			max-width: 300px; /* Maximum width for larger screens */
-			margin-bottom: 1rem; /* Add spacing between wrapped columns */
-		}
+        
+        .footer-col {
+            flex: 1 1 250px; /* Allow columns to grow and shrink with min width */
+            max-width: 300px; /* Maximum width for larger screens */
+            margin-bottom: 1rem; /* Add spacing between wrapped columns */
+        }
         
         .footer-col h3 {
             margin-bottom: 1rem;
             position: relative;
-		}	
+        }    
         
         .footer-col h3:after {
             content: '';
@@ -170,7 +270,7 @@
         
         .footer-links {
             list-style: none;
-			padding-left: 0; /* Remove default padding */
+            padding-left: 0; /* Remove default padding */
         }
         
         .footer-links li {
@@ -181,40 +281,40 @@
             color: #aaa;
             text-decoration: none;
             transition: color 0.3s;
-			display: block; /* Makes the entire area clickable */
-			padding: 0.2rem 0; /* Slightly larger touch target */
+            display: block; /* Makes the entire area clickable */
+            padding: 0.2rem 0; /* Slightly larger touch target */
         }
         
         .footer-links a:hover {
             color: white;
         }
-		
-		/* Media queries for different screen sizes */
-		@media screen and (max-width: 768px) {
-		.footer-grid {
-			gap: 1rem;
-			justify-content: flex-start;
-		}
-    
-		.footer-col {
-			flex: 1 1 200px; /* Slightly smaller min-width */
-		}
-	}
+        
+        /* Media queries for different screen sizes */
+        @media screen and (max-width: 768px) {
+            .footer-grid {
+                gap: 1rem;
+                justify-content: flex-start;
+            }
+        
+            .footer-col {
+                flex: 1 1 200px; /* Slightly smaller min-width */
+            }
+        }
 
-		@media screen and (max-width: 480px) {
-		.footer-grid {
-			flex-direction: column;
-			gap: 1.5rem;
-		}
-    
-		.footer-col {
-			max-width: 100%; /* Full width on very small screens */
-		}
-    
-		footer {
-        padding: 2rem 0 1rem; /* Slightly less padding on mobile */
-		}
-	}
+        @media screen and (max-width: 480px) {
+            .footer-grid {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        
+            .footer-col {
+                max-width: 100%; /* Full width on very small screens */
+            }
+        
+            footer {
+                padding: 2rem 0 1rem; /* Slightly less padding on mobile */
+            }
+        }
         
         .copyright {
             text-align: center;
@@ -225,14 +325,6 @@
             color: #aaa;
         }
     </style>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retirement Blog</title>
-    <meta name="description" content="Explore our collection of retirement planning articles and guides.">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="css/blog.css">
 </head>
 <body>
     <header>
@@ -241,42 +333,48 @@
                 <div class="logo">
                     Retirement<span>Gifts</span>.com
                 </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <ul class="nav-links">
-                    <li><a href="/index.html" class="active">Home</a></li>
-					<li><a href="/gifts/gifts.html">Gift Ideas Gallery</a></li>
-					<li><a href="/blog/blog.html">Blog</a></li>
-					<li><a href="/about/about.html">About</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html" class="active">Home</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas Gallery</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/blog.html">Blog</a></li>
+                    <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
                 </ul>
+                <div class="overlay"></div>
             </nav>
         </div>
     </header>
 
     <div class="about-section">
-    <br><br><h2><br>About Us</h2>
-    <br><p>Welcome to Retirement-Gifts.com, your trusted resource for finding thoughtful and meaningful retirement gifts. <br>
-	We understand that retirement represents a significant milestone in one's life journey—a celebration of years of hard work, dedication, and accomplishment.<br><br>
-	
-    Our mission is to help you discover the perfect gift that honors this special transition. Whether you're shopping for a colleague who's been with your company for decades, a beloved family member entering their golden years, or a friend embarking on this new chapter, our curated selection offers something for every retiree.<br><br>
-	
-    What sets us apart is our carefully organized collection. Each gift in our gallery has been selected for its quality, thoughtfulness, and ability to convey your appreciation. We regularly update our collection to include fresh, innovative gift ideas alongside timeless classics.<br><br>
-	
-    Thank you for visiting Retirement-Gifts.com. We're honored to be part of your gift-giving journey and to help you celebrate the retirees in your life with presents that truly matter.</p><br><br><br><br><br>
-</div>
+        <br><br><h2><br>About Us</h2>
+        <br><p>Welcome to Retirement-Gifts.com, your trusted resource for finding thoughtful and meaningful retirement gifts. <br>
+        We understand that retirement represents a significant milestone in one's life journey—a celebration of years of hard work, dedication, and accomplishment.<br><br>
+        
+        Our mission is to help you discover the perfect gift that honors this special transition. Whether you're shopping for a colleague who's been with your company for decades, a beloved family member entering their golden years, or a friend embarking on this new chapter, our curated selection offers something for every retiree.<br><br>
+        
+        What sets us apart is our carefully organized collection. Each gift in our gallery has been selected for its quality, thoughtfulness, and ability to convey your appreciation. We regularly update our collection to include fresh, innovative gift ideas alongside timeless classics.<br><br>
+        
+        Thank you for visiting Retirement-Gifts.com. We're honored to be part of your gift-giving journey and to help you celebrate the retirees in your life with presents that truly matter.</p><br><br><br><br><br>
+    </div>
 
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h3>Retirement Gifts</h3>
-                    <p>Helping you celebrate life's golden milestone with thoughtful gifts.</p>
+                    <p>Helping you celebrate life's golden milestone with thoughtful gifts, celebration ideas and life advices.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="/index.html" class="active">Home</a></li>
-						<li><a href="/gifts/gifts.html">Gift Ideas Gallery</a></li>
-						<li><a href="/blog/blog.html">Blog</a></li>
-						<li><a href="/about/about.html">About</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/index.html">Home</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Gifts/gifts.html">Gift Ideas</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/Blog/blog.html">Blog</a></li>
+                        <li><a href="file:///C:/Users/julia/Documents/Golden%20years/About/about.html">About</a></li>
                     </ul>
                 </div>
             </div>
@@ -285,6 +383,43 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // JavaScript for Hamburger Menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const overlay = document.querySelector('.overlay');
+            const body = document.body;
+            
+            // Toggle menu when hamburger is clicked
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                overlay.classList.toggle('active');
+                body.classList.toggle('menu-open');
+            });
+            
+            // Close menu when clicking on the overlay
+            overlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                overlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+            
+            // Close menu when a nav link is clicked
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
+        });
+    </script>
 
     <script src="../js/main.js"></script>
     <script src="js/blog.js"></script>
