@@ -60,6 +60,23 @@
         .logo span {
             color: var(--secondary);
         }
+		
+		/* Hamburger menu icon (hidden by default on desktop) */
+		.menu-toggle {
+			display: none;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 30px;
+			height: 21px;
+			cursor: pointer;
+		}
+
+		.menu-toggle span {
+			height: 3px;
+			width: 100%;
+			background-color: white;
+			border-radius: 2px;
+		}
         
         .nav-links {
             display: flex;
@@ -646,6 +663,12 @@
                 <div class="logo">
                     Retirement<span>Gifts</span>.com
                 </div>
+				<div class="menu-toggle">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="gifts/gifts.html">Gift Ideas Gallery</a></li>
@@ -746,13 +769,26 @@
         </div>
     </footer>
 	<script>
-  window.op = window.op||function(...args){(window.op.q=window.op.q||[]).push(args);};
-  window.op('init', {
-    clientId: 'cdb0f6f8-202f-436d-b693-f40071a7990c',
-    trackScreenViews: true,
-    trackOutgoingLinks: true,
-    trackAttributes: true,
-  });
+		window.op = window.op||function(...args){(window.op.q=window.op.q||[]).push(args);};
+		window.op('init', {
+			clientId: 'cdb0f6f8-202f-436d-b693-f40071a7990c',
+				trackScreenViews: true,
+				trackOutgoingLinks: true,
+				trackAttributes: true,
+		});
+  
+		document.addEventListener('DOMContentLoaded', function() {
+		const menuToggle = document.querySelector('.menu-toggle');
+		const navLinks = document.querySelector('.nav-links');
+    
+		if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            console.log('Menu clicked'); // For debugging
+        });
+    }
+});
+  
 </script>
 	
 </body>
