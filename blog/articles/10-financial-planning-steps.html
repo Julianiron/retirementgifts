@@ -175,22 +175,24 @@
         }
         
         .footer-grid {
-            display: flex;
+			display: flex;
 			justify-content: center;
 			gap: 10rem;
 			margin-bottom: 2rem;
 			padding: 0 2rem;
+			flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
         }
 		
 		.footer-col {
-			flex: 0 0 250px; /* Fixed width for each column */
-			max-width: 250px; /* Ensures columns don't grow beyond this width */
+			flex: 1 1 250px; /* Allow columns to grow and shrink with min width */
+			max-width: 300px; /* Maximum width for larger screens */
+			margin-bottom: 1rem; /* Add spacing between wrapped columns */
 		}
         
         .footer-col h3 {
             margin-bottom: 1rem;
             position: relative;
-        }
+		}	
         
         .footer-col h3:after {
             content: '';
@@ -205,6 +207,7 @@
         
         .footer-links {
             list-style: none;
+			padding-left: 0; /* Remove default padding */
         }
         
         .footer-links li {
@@ -215,11 +218,40 @@
             color: #aaa;
             text-decoration: none;
             transition: color 0.3s;
+			display: block; /* Makes the entire area clickable */
+			padding: 0.2rem 0; /* Slightly larger touch target */
         }
         
         .footer-links a:hover {
             color: white;
         }
+		
+		/* Media queries for different screen sizes */
+		@media screen and (max-width: 768px) {
+		.footer-grid {
+			gap: 1rem;
+			justify-content: flex-start;
+		}
+    
+		.footer-col {
+			flex: 1 1 200px; /* Slightly smaller min-width */
+		}
+	}
+
+		@media screen and (max-width: 480px) {
+		.footer-grid {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+    
+		.footer-col {
+			max-width: 100%; /* Full width on very small screens */
+		}
+    
+		footer {
+        padding: 2rem 0 1rem; /* Slightly less padding on mobile */
+		}
+	}
         
         .copyright {
             text-align: center;
