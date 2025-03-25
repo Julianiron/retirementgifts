@@ -88,6 +88,16 @@ const blogPosts = [
         image: '/images/gifts2.jpg',
         tags: ['Retirement', 'Gifts', 'Men']
     },
+	{
+	     id: 8,
+        slug: 'what-to-bring-retirement-party',
+        title: 'What to Bring to a Retirement Party?',
+        excerpt: 'A guide to choosing thoughtful gifts, cards, and contributions for a memorable retirement celebration.',
+        date: 'March 25, 2025',
+        author: 'Admin',
+        image: '/images/gifts3.jpg',
+        tags: ['Retirement', 'Gifts', 'Party']
+    },
 ];
 
 // Function to load blog posts on the main blog page
