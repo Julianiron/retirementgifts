@@ -90,7 +90,7 @@ const blogPosts = [
     },
 	{
 	     id: 8,
-        slug: 'what-to-bring-retirement-party',
+        slug: 'What-to-bring-retirement-party',
         title: 'What to Bring to a Retirement Party?',
         excerpt: 'A guide to choosing thoughtful gifts, cards, and contributions for a memorable retirement celebration.',
         date: 'March 25, 2025',
